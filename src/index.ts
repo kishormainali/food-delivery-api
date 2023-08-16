@@ -20,7 +20,13 @@ app.get("/", (req: Request, res: Response) => {
 
 /// connect to mongodb
 mongoose
-.connect(config.mongo.url, {})
+.connect(config.mongo.url, {
+    retryWrites: true,
+    writeConcern: {
+        w: 'majority',
+    },
+    dbName: config.mongo.dbName,
+})
 .then(() => {
     startServer();
     Logging.log(`Connected to MongoDB at ${config.mongo.url}`);

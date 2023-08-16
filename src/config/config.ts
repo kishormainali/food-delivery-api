@@ -9,6 +9,7 @@ const SERVER_PORT = Number(process.env.PORT) || 3000;
 export const config = {
     mongo: {
         url: MONGO_URL,
+        dbName: process.env.MONGO_DB_NAME || "foody",
     },
     server: {
         port: SERVER_PORT,
